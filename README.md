@@ -1,3 +1,3 @@
 # Raw Crud App practice
 
-## CRUD with express, node and mongodb
+Simple CRUD app using Mongodb, Express and Node.js to generate some cool anime quotes
