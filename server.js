@@ -12,6 +12,8 @@ client.connect()
     const db = client.db("anime-quotes")
     const quotesCollection = db.collection("quotes")
 
+    app.set('view engine', 'ejs')
+
     app.use(express.urlencoded({extended : true}));
 
     app.listen(3000, () => {
@@ -19,7 +21,13 @@ client.connect()
     })
 
     app.get('/', (req,res) => {
-        res.sendFile(__dirname + '/index.html');
+        db.collection('quotes')
+            .find()
+            .toArray()
+            .then(results => {
+                res.render('index.ejs', {quotes : results})
+            })
+            .catch(error => console.error(error))
     })
 
     app.post('/quotes', (req,res) => {
@@ -33,6 +41,3 @@ client.connect()
     })
 })
 .catch(err => console.error(err))
-
-
-
