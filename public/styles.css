@@ -1,0 +1,9 @@
+h1 {
+    color: red;
+    text-align: center;
+}
+
+section {
+    display: flex;
+    justify-content: space-between;
+}

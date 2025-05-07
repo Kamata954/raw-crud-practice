@@ -15,6 +15,8 @@ client.connect()
     app.set('view engine', 'ejs')
 
     app.use(express.urlencoded({extended : true}));
+    app.use(express.static('public'))
+    app.use(express.json())
 
     app.listen(3000, () => {
         console.log('listening on port 3000');
@@ -38,6 +40,38 @@ client.connect()
                 res.redirect("/");
             })
             .catch(err => console.error(err))
+    })
+
+    app.put('/quotes', (req,res) => {
+        quotesCollection
+            .findOneAndUpdate(
+                {name: 'Skywalker'},
+                {
+                    $set: {
+                        name: req.body.name,
+                        quote: req.body.quote
+                    },
+                },
+                {
+                    upsert: true,
+                }
+            )
+            .then(result => {
+                res.json('Success')
+            })
+            .catch(error => console.error(error))
+    })
+
+    app.delete('/quotes', (req,res) => {
+        quotesCollection
+        .deleteOne({name: req.body.name})
+        .then(result => {
+            if(result.deletedCount === 0){
+                return res.json('The Nine Tails is gone and fully sealed')
+            }
+            res.json('Sealed the Nine Tails rampage!')
+        })
+        .catch(error => console.error(error))
     })
 })
 .catch(err => console.error(err))

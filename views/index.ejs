@@ -4,14 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY CRUD APP</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1>Damn Node and Express kinda hard</h1>
-    <form action="/quotes" method="POST">
-        <input type="text" placeholder="name" name="name">
-        <input type="text" placeholder="quote" name="quote">
-        <button>Submit</button>
-    </form>
+    <div>
+        <h1>Damn Node and Express kinda hard</h1>
+    </div>
+    
+    <section>
+        <div>
+            <h2>Add Quote</h2>
+            <form action="/quotes" method="POST">
+                <input type="text" placeholder="name" name="name">
+                <input type="text" placeholder="quote" name="quote">
+                <button>Submit</button>
+            </form>
+        </div>
+        
+        <div>
+            <h2>The Nine Tailed Fox is on a RAMPAGE!</h2>
+            <p>Replace the first skywalker quote with one of the Kyuubi's quotes</p>
+            <button id="update-button">Replace first quote</button>
+        </div>
+        <div>
+            <h2>Seal the Nine Tailed Fox!!</h2>
+            <p>Deletes one of the Nine Tail's rampages. Does nothing if Nine Tails isnt on a rampage</p>
+            <button id="delete-button">Seal the Nine Tailed Fox</button>
+        </div>
+        <div id="message"></div>
+    </section>
+    
+
     <h2>Some Quotes</h2>
     <ul class="quotes">
         <% for(var i = 0; i < quotes.length; i++) {%>
@@ -21,5 +44,6 @@
         </li>
         <%} %>
     </ul>
+    <script src="/main.js"></script>
 </body>
 </html>
